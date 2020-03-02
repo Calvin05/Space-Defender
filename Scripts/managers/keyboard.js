@@ -40,6 +40,7 @@ var managers;
                         this.fire = false;
                         break;
                     }
+
             }
         };
         Keyboard.prototype.onKeyUp = function (event) {
@@ -60,6 +61,7 @@ var managers;
                 case config.Keys.RIGHT_ARROW:
                     this.moveRight = false;
                     break;
+
                 case config.Keys.SPACE:
                     this.fireOnce = true;
                     this.fire = false;

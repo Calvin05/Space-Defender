@@ -7,10 +7,12 @@ module managers {
       public moveBackward?: boolean;
       public moveLeft?: boolean;
       public moveRight?: boolean;
+
       public fire?: boolean;
       public enabled?: boolean;
       public paused?: boolean;
       public fireOnce = true;
+
   
       // constructors
       constructor() {
@@ -44,6 +46,7 @@ module managers {
             this.moveRight = true;
           break;
   
+
           case config.Keys.SPACE:
             if (this.fireOnce) {
               this.fire = true;
@@ -54,7 +57,6 @@ module managers {
               this.fire = false;
               break;
             }
-            
         }
       }
   
@@ -80,9 +82,11 @@ module managers {
             this.moveRight = false;
           break;
   
+
           case config.Keys.SPACE:
             this.fireOnce = true;
             this.fire = false;
+
           break;
   
         }

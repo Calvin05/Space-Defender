@@ -18,7 +18,7 @@ var objects;
         __extends(Player, _super);
         // CONSTRUCTOR
         function Player() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("player"), 0, 0, true) || this;
+            var _this = _super.call(this, config.Game.ASSETS.getResult("player"), 320, 0, true) || this;
             // PRIVATE INSTANCE MEMBERS
             _this._died = false;
             _this.Start();
@@ -72,18 +72,29 @@ var objects;
         //  } 
         // PUBLIC METHODS
         Player.prototype.Start = function () {
+
             this.x = 320;
             this.y = 750;
             // this._verticalPosition = 760; 
+
         };
         Player.prototype.Update = function () {
             this._move();
             this._checkBounds();
+            //this._shootGun();
             // this._keyboardInput();
             // let mouseX = config.Game.STAGE.mouseX;
             // let mouseY = config.Game.STAGE.mouseY;
             // this.position = new Vector2(mouseX, mouseY);
             //this.position = new Vector2(this.stage.mouseX, this.stage.mouseY);
+        };
+        Player.prototype._shootGun = function () {
+            //if(config.Game.keyboardManager.fireGun){
+            console.log("click");
+            // let bullet = new objects.Bullet(config.Game.ASSETS.getResult("beam1"), _player.x, _player.y-20, true);
+            // _bullets.push(bullet);
+            //addChild(bullet);
+            //}
         };
         Player.prototype.Reset = function () {
         };

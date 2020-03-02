@@ -5,6 +5,7 @@ module objects
         // PRIVATE INSTANCE MEMBERS
         private _died:boolean = false;
         private _verticalPosition?:number;
+        
         //private _keyPosition:Vector2 = new Vector2(346, 0);
         
         // PUBLIC PROPERTIES
@@ -15,7 +16,7 @@ module objects
         // CONSTRUCTOR
         constructor()
         {
-            super(config.Game.ASSETS.getResult("player"),0,0,true);
+            super(config.Game.ASSETS.getResult("player"),320,0,true);
             this.Start();
         }
 
@@ -34,10 +35,12 @@ module objects
             {
                 this.position = new Vector2(config.Game.SCREEN_WIDTH - this.halfWidth, this.position.y);
             } 
-        }      
+        } 
+
+
+
         private _move(): void
         {
-            
             //this.position = new Vector2(this._keyPosition.x, this._verticalPosition);
             if(config.Game.keyboardManager.moveLeft){
                 this.x -=5;
@@ -75,6 +78,7 @@ module objects
         public Update(): void {
             this._move();
             this._checkBounds();
+            //this._shootGun();
            // this._keyboardInput();
 
 
@@ -87,6 +91,16 @@ module objects
 
             // this.position = new Vector2(mouseX, mouseY);
             //this.position = new Vector2(this.stage.mouseX, this.stage.mouseY);
+        }
+
+        private _shootGun(): void
+        {
+            //if(config.Game.keyboardManager.fireGun){
+                console.log("click");
+                // let bullet = new objects.Bullet(config.Game.ASSETS.getResult("beam1"), _player.x, _player.y-20, true);
+                // _bullets.push(bullet);
+                //addChild(bullet);
+            //}
         }
 
         public Reset(): void {

@@ -541,8 +541,8 @@ module scenes
             let chopperImg23 = document.createElement('img')
             let chopperImg24 = document.createElement('img')
             let chopperImg25 = document.createElement('img')
-            let chopperImg26 = document.createElement('img')
-            let chopperImg27 = document.createElement('img')
+            // let chopperImg26 = document.createElement('img')
+            // let chopperImg27 = document.createElement('img')
        
 
             chopperImg1.src = "./Assets/images/v1-01.png";

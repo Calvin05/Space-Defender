@@ -467,42 +467,42 @@ var scenes;
             let chopperImg23 = document.createElement('img');
             let chopperImg24 = document.createElement('img');
             let chopperImg25 = document.createElement('img');
-            let chopperImg26 = document.createElement('img');
-            let chopperImg27 = document.createElement('img');
-            chopperImg1.src = "./Assets/images/v1.png";
-            chopperImg2.src = "./Assets/images/v2.png";
-            chopperImg3.src = "./Assets/images/v3.png";
-            chopperImg4.src = "./Assets/images/v4.png";
-            chopperImg5.src = "./Assets/images/v5.png";
-            chopperImg6.src = "./Assets/images/v6.png";
-            chopperImg7.src = "./Assets/images/v7.png";
-            chopperImg8.src = "./Assets/images/v8.png";
-            chopperImg9.src = "./Assets/images/v9.png";
-            chopperImg10.src = "./Assets/images/v10.png";
-            chopperImg11.src = "./Assets/images/v11.png";
-            chopperImg12.src = "./Assets/images/v12.png";
-            chopperImg13.src = "./Assets/images/v13.png";
-            chopperImg14.src = "./Assets/images/v14.png";
-            chopperImg15.src = "./Assets/images/v15.png";
-            chopperImg16.src = "./Assets/images/v16.png";
-            chopperImg17.src = "./Assets/images/v17.png";
-            chopperImg18.src = "./Assets/images/v18.png";
-            chopperImg19.src = "./Assets/images/v19.png";
-            chopperImg20.src = "./Assets/images/v20.png";
-            chopperImg21.src = "./Assets/images/v21.png";
-            chopperImg22.src = "./Assets/images/v22.png";
-            chopperImg23.src = "./Assets/images/v23.png";
-            chopperImg24.src = "./Assets/images/v24.png";
-            chopperImg25.src = "./Assets/images/v25.png";
-            chopperImg26.src = "./Assets/images/v26.png";
-            chopperImg27.src = "./Assets/images/v27.png";
+            // let chopperImg26 = document.createElement('img')
+            // let chopperImg27 = document.createElement('img')
+            chopperImg1.src = "./Assets/images/v1-01.png";
+            chopperImg2.src = "./Assets/images/v2-01.png";
+            chopperImg3.src = "./Assets/images/v3-01.png";
+            chopperImg4.src = "./Assets/images/v4-01.png";
+            chopperImg5.src = "./Assets/images/v5-01.png";
+            chopperImg6.src = "./Assets/images/v6-01.png";
+            chopperImg7.src = "./Assets/images/v7-01.png";
+            chopperImg8.src = "./Assets/images/v8-01.png";
+            chopperImg9.src = "./Assets/images/v9-01.png";
+            chopperImg10.src = "./Assets/images/v10-01.png";
+            chopperImg11.src = "./Assets/images/v11-01.png";
+            chopperImg12.src = "./Assets/images/v12-01.png";
+            chopperImg13.src = "./Assets/images/v13-01.png";
+            chopperImg14.src = "./Assets/images/v14-01.png";
+            chopperImg15.src = "./Assets/images/v15-01.png";
+            chopperImg16.src = "./Assets/images/v16-01.png";
+            chopperImg17.src = "./Assets/images/v17-01.png";
+            chopperImg18.src = "./Assets/images/v18-01.png";
+            chopperImg19.src = "./Assets/images/v19-01.png";
+            chopperImg20.src = "./Assets/images/v20-01.png";
+            chopperImg21.src = "./Assets/images/v21-01.png";
+            chopperImg22.src = "./Assets/images/v22-01.png";
+            chopperImg23.src = "./Assets/images/v23-01.png";
+            chopperImg24.src = "./Assets/images/v24-01.png";
+            chopperImg25.src = "./Assets/images/v25-01.png";
+            // chopperImg26.src = "./Assets/images/v26.png";
+            // chopperImg27.src = "./Assets/images/v27.png";
             let spriteSheet = new createjs.SpriteSheet({
                 images: [chopperImg1, chopperImg2, chopperImg3, chopperImg4, chopperImg5,
                     chopperImg6, chopperImg7, chopperImg8, chopperImg9, chopperImg10,
                     chopperImg11, chopperImg12, chopperImg13, chopperImg14, chopperImg15, chopperImg16,
                     chopperImg17, chopperImg18, chopperImg19, chopperImg20, chopperImg21, chopperImg22,
-                    chopperImg23, chopperImg24, chopperImg25, chopperImg26, chopperImg27],
-                frames: { width: 480, height: 373, count: 28 },
+                    chopperImg23, chopperImg24, chopperImg25],
+                frames: { width: 480, height: 373, count: 26 },
                 animations: {
                     explore: [0, 27, false]
                 }

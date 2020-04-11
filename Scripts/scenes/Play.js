@@ -15,6 +15,7 @@ var scenes;
             //private _liveLabel:objects.Label;
             this.fire = true;
             this._bulletImg = new Image();
+            this._count = 0;
             // initialization
             this._player = new objects.Player;
             this._level = new objects.Label;
@@ -32,7 +33,7 @@ var scenes;
             this._bulletImage = new objects.Button();
             this._scoreImage = new objects.Button();
             this._lifeImage = new objects.Button();
-            this._count = false;
+            this._count = 0;
             this._player = new objects.Player();
             this._levelup = new objects.Image();
             this._healthup = new objects.Image();
@@ -50,6 +51,7 @@ var scenes;
             this.StartAnimation();
             //Set Number of Enemies
             this._numOfEnemy = 5;
+            this._count = this._numOfEnemy;
             //unlimited background sound
             this._playBackSound = new createjs.PlayPropsConfig().set({ interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
             createjs.Sound.play("playSound", this._playBackSound);
@@ -91,7 +93,7 @@ var scenes;
             if (config.Game.keyboardManager.antiBoom) {
                 if (this._antiBoom) {
                     if (config.Game.SCORE_BOARD.AntiBoomItem > 0) {
-                        config.Game.SCORE_BOARD.Score += 500;
+                        // config.Game.SCORE_BOARD.Score += 500;
                         console.log("antianti");
                         this._ememies.forEach(enemy => {
                             this.ExploreAnimation(enemy.x, enemy.y);
@@ -216,7 +218,6 @@ var scenes;
                         this.removeChild(enemy);
                         bullet.position = new objects.Vector2(-200, -200);
                         this.removeChild(bullet);
-                        //config.Game.SCORE_BOARD.Score += 100
                     }
                 });
             });
@@ -321,6 +322,8 @@ var scenes;
             animation.y = obY - 50;
             animation.spriteSheet.getAnimation('explore').speed = 0.5;
             animation.gotoAndPlay('explore');
+            this._count--;
+            config.Game.SCORE_BOARD.Score += 100;
             this.addChild(animation);
         }
         ShieldAnimation(obX, obY) {
@@ -455,7 +458,7 @@ var scenes;
             if (this._bulletNum == 0) {
                 config.Game.SCENE_STATE = scenes.State.END;
             }
-            if (managers.Collision.count >= this._numOfEnemy || this._numOfEnemy == 0) {
+            if (this._count < 1) {
                 config.Game.SCENE_STATE = scenes.State.STAGE2;
                 managers.Collision.count = 0;
             }

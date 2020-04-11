@@ -17,7 +17,7 @@ module scenes {
 
         private _ememies: objects.Enemy[];
         private _enemybullets: Array<objects.Bullet>;
-        private _numOfEnemy: Number = 10;
+        private _numOfEnemy: number = 10;
 
         private _player: objects.Player;
         private _bullets: Array<objects.Bullet>;
@@ -29,7 +29,7 @@ module scenes {
         private _antiBoomImage: objects.Image;
         private _healthup: objects.Image;
 
-        private count: number = 0;
+        private _count: number = 0;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -54,7 +54,8 @@ module scenes {
             this._healthup = new objects.Image();
             this._blackhole = new objects.Blackhole();
             this._antiBoomImage = new objects.Image();
-            this._numOfEnemy;
+            this._numOfEnemy = 10;
+            this._count = this._numOfEnemy;
             this._bulletNum = 20;
             // this._point = 0;
             this.Start();
@@ -119,7 +120,7 @@ module scenes {
                     if (bullet.isColliding) {
                         enemy.Live--
                         if (enemy.Live < 1) {
-                            this.count++;
+                            // this.count++;
                             this.ExploreAnimation(enemy.x, enemy.y);
                             createjs.Sound.play("./Assets/sounds/crash.wav");
                             let randNum = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
@@ -219,7 +220,7 @@ module scenes {
 
             }
 
-            if (this.count > 5) {
+            if (this._count < 1) {
                 config.Game.SCENE_STATE = scenes.State.FINALSTAGE;
                 managers.Collision.count = 0;
 
@@ -256,6 +257,7 @@ module scenes {
             this.UpdatePlayerFire();
             this.UpdatePosition();
             this.UpdateWinOrLoseCondition();
+            this.killAll();
             this._levelup.y += 5;
             this._levelup.position.y += 5;
 
@@ -285,7 +287,7 @@ module scenes {
                     config.Game.SCORE_BOARD.AntiBoomItem = 2;
                 }else config.Game.SCORE_BOARD.AntiBoomItem = 1;
                 this.removeChild(this._antiBoomImage);
-                //this.killAll();
+                //
             }
         }//end update
 
@@ -314,7 +316,7 @@ module scenes {
                 if (this._antiBoom){
                     if(config.Game.SCORE_BOARD.AntiBoomItem > 0)
                     {
-                        config.Game.SCORE_BOARD.Score += 500;
+                        // config.Game.SCORE_BOARD.Score += 500;
                         console.log("antianti")
                         this._ememies.forEach(enemy => {
                             this.ExploreAnimation(enemy.x, enemy.y);
@@ -322,6 +324,7 @@ module scenes {
                             enemy.position = new objects.Vector2(-100, -200);
                             enemy.died = true;
                             this.removeChild(enemy);
+                            this._antiBoom = false;
                         });
                         config.Game.SCORE_BOARD.AntiBoomItem -=1;
                     }
@@ -404,7 +407,9 @@ module scenes {
             animation.y = obY - 50;
             animation.spriteSheet.getAnimation('explore').speed = 0.5;
             animation.gotoAndPlay('explore');
-
+            this._count--;
+            console.log("Count: " + this._count);
+            config.Game.SCORE_BOARD.Score += 200;
             this.addChild(animation);
 
         }

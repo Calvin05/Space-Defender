@@ -481,19 +481,19 @@ module scenes
             let chopperImg12 = document.createElement('img')
             let chopperImg13 = document.createElement('img')
 
-            chopperImg1.src = "./Assets/images/b1.png";
-            chopperImg2.src = "./Assets/images/b2.png";
-            chopperImg3.src = "./Assets/images/b3.png";
-            chopperImg4.src = "./Assets/images/b4.png";
-            chopperImg5.src = "./Assets/images/b5.png";
-            chopperImg6.src = "./Assets/images/b6.png";
-            chopperImg7.src = "./Assets/images/b7.png";
-            chopperImg8.src = "./Assets/images/b8.png";
-            chopperImg9.src = "./Assets/images/b9.png";
-            chopperImg10.src = "./Assets/images/b10.png";
-            chopperImg11.src = "./Assets/images/b11.png";
-            chopperImg12.src = "./Assets/images/b12.png";
-            chopperImg13.src = "./Assets/images/b13.png";
+            chopperImg1.src = "./Assets/images/b1-01.png";
+            chopperImg2.src = "./Assets/images/b2-01.png";
+            chopperImg3.src = "./Assets/images/b3-01.png";
+            chopperImg4.src = "./Assets/images/b4-01.png";
+            chopperImg5.src = "./Assets/images/b5-01.png";
+            chopperImg6.src = "./Assets/images/b6-01.png";
+            chopperImg7.src = "./Assets/images/b7-01.png";
+            chopperImg8.src = "./Assets/images/b8-01.png";
+            chopperImg9.src = "./Assets/images/b9-01.png";
+            chopperImg10.src = "./Assets/images/b10-01.png";
+            chopperImg11.src = "./Assets/images/b11-01.png";
+            chopperImg12.src = "./Assets/images/b12-01.png";
+            chopperImg13.src = "./Assets/images/b13-01.png";
        
 
                 let spriteSheet = new createjs.SpriteSheet({

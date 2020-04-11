@@ -378,6 +378,7 @@ module scenes
             this.addChild(this._levelup);
             this.addChild(this._boss);
             this.addChild(this._bossLabel);
+            this.addChild(this._antiBoomImage);
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
             this.addChild(this._scoreBoard.HighScoreLabel);

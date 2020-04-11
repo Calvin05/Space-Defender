@@ -139,7 +139,7 @@ var scenes;
             this._antiBoomImage.position.y += 5;
             managers.Collision.AABBCheck(this._player, this._antiBoomImage, 0, true);
             if (this._antiBoomImage.isColliding) {
-                config.Game.SCORE_BOARD.AntiBoomItem += 1;
+                config.Game.SCORE_BOARD.AntiBoomItem = 1;
                 this.removeChild(this._antiBoomImage);
             }
         }

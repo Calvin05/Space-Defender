@@ -11,6 +11,7 @@ var scenes;
             this._numOfEnemy = 0;
             this._bulletNum = 20;
             this._bulletImg = new Image();
+            this._antiBoom = true;
             // initialization
             this._player = new objects.Player;
             this._ememies = new Array();
@@ -28,6 +29,7 @@ var scenes;
             this._lifeImage = new objects.Button();
             this._levelup = new objects.Image();
             this._blackhole = new objects.Blackhole();
+            this._antiBoomImage = new objects.Image();
             this._numOfEnemy;
             this._bulletNum = 30;
             // this._point = 0;
@@ -229,6 +231,28 @@ var scenes;
                 }, 300);
             }
         }
+        //ANTI-Matter-Boom
+        killAll() {
+            if (config.Game.keyboardManager.antiBoom) {
+                if (this._antiBoom) {
+                    if (config.Game.SCORE_BOARD.AntiBoomItem > 0) {
+                        config.Game.SCORE_BOARD.Score += 500;
+                        console.log("antianti");
+                        this._ememies.forEach(enemy => {
+                            this.ExploreAnimation(enemy.x, enemy.y);
+                            createjs.Sound.play("./Assets/sounds/crash.wav");
+                            enemy.position = new objects.Vector2(-100, -200);
+                            enemy.died = true;
+                            this.removeChild(enemy);
+                        });
+                        config.Game.SCORE_BOARD.AntiBoomItem -= 1;
+                    }
+                }
+            }
+            if (!config.Game.keyboardManager.antiBoom) {
+                this._antiBoom = true;
+            }
+        }
         // PUBLIC METHODS
         Start() {
             this._background = new objects.Background(config.Game.ASSETS.getResult("background3"));
@@ -245,6 +269,7 @@ var scenes;
             this._numOfEnemy = 10;
             this._boss = new objects.Boss(config.Game.ASSETS.getResult("boss"));
             this._bossLabel = new objects.Label("0", "12px", "Impact, Charcoal, sans-serif", "#ffffff", -100, -100, true);
+            this._antiBoomImage = new objects.Image(config.Game.ASSETS.getResult("antiBoom"), this._antiBoomImage.RandomPoint(true).x, this._antiBoomImage.RandomPoint(true).y, true);
             // this.AddEnemies(this._numOfEnemy);
             config.Game.SCORE_BOARD = this._scoreBoard;
             this._scoreBoard.HighScore = config.Game.HIGH_SCORE;
@@ -268,6 +293,18 @@ var scenes;
                 this._bulletImg.src = "./Assets/images/beam3.png";
             }
             this._boss.Update();
+            this._antiBoomImage.y += 5;
+            this._antiBoomImage.position.y += 5;
+            managers.Collision.AABBCheck(this._player, this._antiBoomImage, 0, true);
+            if (this._antiBoomImage.isColliding) {
+                if (config.Game.SCORE_BOARD.AntiBoomItem == 2) {
+                    config.Game.SCORE_BOARD.AntiBoomItem = 3;
+                }
+                else if (config.Game.SCORE_BOARD.AntiBoomItem == 1)
+                    config.Game.SCORE_BOARD.AntiBoomItem = 2;
+                else
+                    config.Game.SCORE_BOARD.AntiBoomItem = 1;
+            }
         } //end update
         Main() {
             this.addChild(this._background);
@@ -285,6 +322,7 @@ var scenes;
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
             this.addChild(this._scoreBoard.HighScoreLabel);
+            this.addChild(this._scoreBoard.ItemLabel);
         } //end main
         //#########################################
         //      FIRE SHOOT WITH SPACE BUTTON

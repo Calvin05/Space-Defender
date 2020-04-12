@@ -19,6 +19,7 @@ module scenes {
         //private _liveLabel:objects.Label;
         private fire = true;
         private _bulletImage: objects.Button;
+        private _pointsUp: objects.Image;
         private _lifeImage: objects.Button;
         private _scoreImage: objects.Button;
         private _levelup: objects.Image;
@@ -26,7 +27,7 @@ module scenes {
         private _playerBullet: objects.Bullet;
         private _bulletImg = new Image();
         private _antiBoomImage: objects.Image;
-        private _count:number = 0;
+        private _count: number = 0;
         /////Test
         private _engine: createjs.Sprite;
 
@@ -55,6 +56,7 @@ module scenes {
             this._lifeImage = new objects.Button();
             this._count = 0;
             this._player = new objects.Player();
+            this._pointsUp = new objects.Image();
             this._levelup = new objects.Image();
             this._healthup = new objects.Image();
             this._playerBullet = new objects.Bullet();
@@ -116,10 +118,9 @@ module scenes {
 
         //ANTI-Matter-Boom
         public killAll(): void {
-            if (config.Game.keyboardManager.antiBoom){
-                if (this._antiBoom){
-                    if(config.Game.SCORE_BOARD.AntiBoomItem > 0)
-                    {
+            if (config.Game.keyboardManager.antiBoom) {
+                if (this._antiBoom) {
+                    if (config.Game.SCORE_BOARD.AntiBoomItem > 0) {
                         // config.Game.SCORE_BOARD.Score += 500;
                         console.log("antianti")
                         this._ememies.forEach(enemy => {
@@ -129,7 +130,7 @@ module scenes {
                             enemy.died = true;
                             this.removeChild(enemy);
                         });
-                        config.Game.SCORE_BOARD.AntiBoomItem -=1;
+                        config.Game.SCORE_BOARD.AntiBoomItem -= 1;
                     }
                 }
             }
@@ -159,6 +160,18 @@ module scenes {
                 }
             }
 
+            //checking whether  points is colliding with the player
+            if (this._pointsUp.getStatus()) {
+                this._pointsUp.Update()
+                managers.Collision.AABBCheck(this._player, this._pointsUp);
+                if (this._pointsUp.isColliding) {
+                    createjs.Sound.play("./Assets/sounds/points.wav");
+                    config.Game.SCORE_BOARD.Score += 400;
+                    console.log("Collided Mister Points")
+                    this.removeChild(this._pointsUp);
+                    this._pointsUp.setStatus(false);
+                }
+            }
             this._levelup.y += 5;
             this._levelup.position.y += 5;
             managers.Collision.AABBCheck(this._player, this._levelup, 0);
@@ -248,13 +261,17 @@ module scenes {
                             this.addChild(this._healthup);
                             this._healthup.setStatus(true);
                         }
-
+                        if (randNum == 2) {
+                            this._pointsUp = new objects.Image(config.Game.ASSETS.getResult("points"), enemy.x, enemy.y + 20, true);
+                            this.addChild(this._pointsUp);
+                            this._pointsUp.setStatus(true);
+                        }
                         enemy.position = new objects.Vector2(-100, -200);
                         enemy.died = true;
                         this.removeChild(enemy);
                         bullet.position = new objects.Vector2(-200, -200);
                         this.removeChild(bullet);
-                        
+
                     }
                 });
 

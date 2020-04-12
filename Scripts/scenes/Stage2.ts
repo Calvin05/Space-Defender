@@ -7,6 +7,7 @@ module scenes {
         //private _liveLabel:objects.Label;
         private _lifeImage: objects.Button;
         private _scoreImage: objects.Button;
+        private _pointsUp: objects.Image;
         private _levelup: objects.Image;
         private _bulletNumLabel: objects.Label;
         private fire = true;
@@ -48,6 +49,7 @@ module scenes {
             //this._pointLabel = new objects.Label();
             //this._liveLabel = new objects.Label();
             this._bulletImage = new objects.Button();
+            this._pointsUp = new objects.Image();
             this._scoreImage = new objects.Button();
             this._lifeImage = new objects.Button();
             this._levelup = new objects.Image();
@@ -129,6 +131,11 @@ module scenes {
                                 this._healthup = new objects.Image(config.Game.ASSETS.getResult("health"), enemy.x, enemy.y + 40, true);
                                 this.addChild(this._healthup);
                                 this._healthup.setStatus(true);
+                            }
+                            if (randNum == 2) {
+                                this._pointsUp = new objects.Image(config.Game.ASSETS.getResult("points"), enemy.x, enemy.y + 20, true);
+                                this.addChild(this._pointsUp);
+                                this._pointsUp.setStatus(true);
                             }
                             enemy.position = new objects.Vector2(-100, -200);
                             enemy.died = true;
@@ -279,13 +286,25 @@ module scenes {
                 }
             }
 
+            //checking whether  points is colliding with the player
+            if (this._pointsUp.getStatus()) {
+                this._pointsUp.Update()
+                managers.Collision.AABBCheck(this._player, this._pointsUp);
+                if (this._pointsUp.isColliding) {
+                    createjs.Sound.play("./Assets/sounds/points.wav");
+                    config.Game.SCORE_BOARD.Score += 400;
+                    console.log("Collided Mister Points")
+                    this.removeChild(this._pointsUp);
+                    this._pointsUp.setStatus(false);
+                }
+            }
             this._antiBoomImage.y += 5;
             this._antiBoomImage.position.y += 5;
             managers.Collision.AABBCheck(this._player, this._antiBoomImage, 0, true);
             if (this._antiBoomImage.isColliding) {
-                if(config.Game.SCORE_BOARD.AntiBoomItem == 1){
+                if (config.Game.SCORE_BOARD.AntiBoomItem == 1) {
                     config.Game.SCORE_BOARD.AntiBoomItem = 2;
-                }else config.Game.SCORE_BOARD.AntiBoomItem = 1;
+                } else config.Game.SCORE_BOARD.AntiBoomItem = 1;
                 this.removeChild(this._antiBoomImage);
                 //
             }
@@ -312,10 +331,9 @@ module scenes {
 
         //ANTI-Matter-Boom
         public killAll(): void {
-            if (config.Game.keyboardManager.antiBoom){
-                if (this._antiBoom){
-                    if(config.Game.SCORE_BOARD.AntiBoomItem > 0)
-                    {
+            if (config.Game.keyboardManager.antiBoom) {
+                if (this._antiBoom) {
+                    if (config.Game.SCORE_BOARD.AntiBoomItem > 0) {
                         // config.Game.SCORE_BOARD.Score += 500;
                         console.log("antianti")
                         this._ememies.forEach(enemy => {
@@ -326,7 +344,7 @@ module scenes {
                             this.removeChild(enemy);
                             this._antiBoom = false;
                         });
-                        config.Game.SCORE_BOARD.AntiBoomItem -=1;
+                        config.Game.SCORE_BOARD.AntiBoomItem -= 1;
                     }
                 }
             }

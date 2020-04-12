@@ -26,6 +26,7 @@ var scenes;
             //this._pointLabel = new objects.Label();
             //this._liveLabel = new objects.Label();
             this._bulletImage = new objects.Button();
+            this._pointsUp = new objects.Image();
             this._scoreImage = new objects.Button();
             this._lifeImage = new objects.Button();
             this._levelup = new objects.Image();
@@ -103,6 +104,11 @@ var scenes;
                                 this._healthup = new objects.Image(config.Game.ASSETS.getResult("health"), enemy.x, enemy.y + 40, true);
                                 this.addChild(this._healthup);
                                 this._healthup.setStatus(true);
+                            }
+                            if (randNum == 2) {
+                                this._pointsUp = new objects.Image(config.Game.ASSETS.getResult("points"), enemy.x, enemy.y + 20, true);
+                                this.addChild(this._pointsUp);
+                                this._pointsUp.setStatus(true);
                             }
                             enemy.position = new objects.Vector2(-100, -200);
                             enemy.died = true;
@@ -235,6 +241,18 @@ var scenes;
                     console.log("collided my nnigaa");
                     this.removeChild(this._healthup);
                     this._healthup.setStatus(false);
+                }
+            }
+            //checking whether  points is colliding with the player
+            if (this._pointsUp.getStatus()) {
+                this._pointsUp.Update();
+                managers.Collision.AABBCheck(this._player, this._pointsUp);
+                if (this._pointsUp.isColliding) {
+                    createjs.Sound.play("./Assets/sounds/points.wav");
+                    config.Game.SCORE_BOARD.Score += 400;
+                    console.log("Collided Mister Points");
+                    this.removeChild(this._pointsUp);
+                    this._pointsUp.setStatus(false);
                 }
             }
             this._antiBoomImage.y += 5;

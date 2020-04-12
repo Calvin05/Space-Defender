@@ -7,6 +7,7 @@ module scenes
         private endLabel:objects.Label;
         private _backButton:objects.Button;
         private _scoreBoard: managers.ScoreBoard;
+        private _playerScore:number;
         // private  _ocean:objects.Ocean;
 
         // PUBLIC PROPERTIES
@@ -21,6 +22,7 @@ module scenes
             this._background = new objects.Background();
             this._backButton = new objects.Button();
             this._scoreBoard  = new managers.ScoreBoard;
+            this._playerScore = 0;
             // this._ocean = new objects.Ocean();
 
             this.Start();
@@ -31,13 +33,14 @@ module scenes
         public Start(): void 
         {
             this._background = new objects.Background(config.Game.ASSETS.getResult("background"));
+            this._playerScore = this._scoreBoard.Score;
             if(config.Game.STATUS == true)
             {
                 this.endLabel = new objects.Label("SEE YOU AGAIN", "80px","Impact, Charcoal, sans-serif", "#ffffff", 320, 300, true);
             }
             else if(config.Game.ENDSCENE == true)
             {
-                this.endLabel = new objects.Label("YOU ARE HERO", "80px","Impact, Charcoal, sans-serif", "#ffffff", 320, 300, true);
+                this.endLabel = new objects.Label("YOU ARE HERO\n\n\tSCORE: " + this._playerScore, "80px","Impact, Charcoal, sans-serif", "#ffffff", 320, 200, true);
                 config.Game.ENDSCENE = false;
             }
             else{

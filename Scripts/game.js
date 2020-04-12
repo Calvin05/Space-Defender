@@ -30,6 +30,7 @@ let game1 = (function () {
         { id: "score", src: "./Assets/images/score.png" },
         { id: "life", src: "./Assets/images/life.png" },
         { id: "levelup", src: "./Assets/images/levelup.png" },
+        { id: "points", src: "./Assets/images/points.png" },
         { id: "health", src: "./Assets/images/h01.png" },
         { id: "antiBoom", src: "./Assets/images/antiBoom.png" },
         { id: "Blackhole", src: "./Assets/images/Blackhole.png" },
@@ -50,7 +51,8 @@ let game1 = (function () {
         { id: "break", src: "./Assets/sounds/break.wav" },
         { id: "powerup", src: "./Assets/sounds/powerup.wav" },
         { id: "exp1", src: "./Assets/sounds/exp1.wav" },
-        { id: "exp2", src: "./Assets/sounds/exp2.wav" }
+        { id: "exp2", src: "./Assets/sounds/exp2.wav" },
+        { id: "breakAudio", src: "./Assets/sounds/points.wav" }
     ];
     // comments from Tom
     function Preload() {

@@ -25,7 +25,7 @@ var scenes;
             this._bullets = new Array();
             this._enemybullets = new Array();
             this._numOfEnemy;
-            this._bulletNum = 1000;
+            this._bulletNum = 20;
             this._bulletNumLabel = new objects.Label();
             // this.point = 0;
             //this._pointLabel = new objects.Label();

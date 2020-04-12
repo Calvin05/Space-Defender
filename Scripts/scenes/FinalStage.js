@@ -9,7 +9,7 @@ var scenes;
             this._scoreBoard = new managers.ScoreBoard;
             this.fire = true;
             this._numOfEnemy = 0;
-            this._bulletNum = 20;
+            this._bulletNum = 30;
             this._bulletImg = new Image();
             this._antiBoom = true;
             // initialization
@@ -31,7 +31,7 @@ var scenes;
             this._blackhole = new objects.Blackhole();
             this._antiBoomImage = new objects.Image();
             this._numOfEnemy;
-            this._bulletNum = 100;
+            this._bulletNum = 30;
             // this._point = 0;
             this._boss = new objects.Boss();
             this._bossLabel = new objects.Label;

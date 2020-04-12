@@ -22,7 +22,7 @@ module scenes
         private _player:objects.Player;
         private _bullets: Array<objects.Bullet>;
         private _playerBullet:objects.Bullet;
-        private _bulletNum=20;
+        private _bulletNum=30;
         
         private _bulletImage:objects.Button;
         private _bulletImg = new Image();
@@ -57,7 +57,7 @@ module scenes
             this._blackhole = new objects.Blackhole();
             this._antiBoomImage = new objects.Image();
             this._numOfEnemy;
-            this._bulletNum = 100;
+            this._bulletNum = 30;
             // this._point = 0;
             this._boss = new objects.Boss();
             this._bossLabel = new objects.Label;

@@ -31,7 +31,7 @@ var scenes;
             this._blackhole = new objects.Blackhole();
             this._antiBoomImage = new objects.Image();
             this._numOfEnemy;
-            this._bulletNum = 30;
+            this._bulletNum = 100;
             // this._point = 0;
             this._boss = new objects.Boss();
             this._bossLabel = new objects.Label;
@@ -147,6 +147,7 @@ var scenes;
                         config.Game.SCORE_BOARD.Score += 1000;
                         this.removeChild(this._boss);
                         this._boss.position = new objects.Vector2(-500, -500);
+                        //config.
                     }
                     // this._point += 200;
                 }
@@ -173,7 +174,7 @@ var scenes;
                 });
             });
             this._enemybullets.forEach((bullet) => {
-                this.BulletSpeed(bullet, 10, 10, true);
+                this.BulletSpeed(bullet, 30, 30, true);
             });
             if (this._boss.canShoot()) {
                 let fire1 = setInterval(() => {
@@ -217,10 +218,15 @@ var scenes;
                 config.Game.SCENE_STATE = scenes.State.END;
             }
             //this._pointLabel.text = " : " + Play.point;
+            if (this._boss.Live < 1) {
+                config.Game.ENDSCENE = true;
+                config.Game.SCENE_STATE = scenes.State.END;
+            }
             //this._liveLabel.text = " : " + managers.Collision.live;
             //if player kill all the enemies
             if (managers.Collision.count == this._numOfEnemy) {
-                config.Game.SCENE_STATE = scenes.State.FINALSTAGE;
+                config.Game.ENDSCENE = true;
+                config.Game.SCENE_STATE = scenes.State.END;
             }
             //if attacked more than 3 times, game over
             if (config.Game.SCORE_BOARD.Lives <= 0) {

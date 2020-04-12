@@ -10,7 +10,7 @@ var scenes;
             this.fire = true;
             this._antiBoom = true;
             this._numOfEnemy = 10;
-            this._bulletNum = 20;
+            this._bulletNum = 100;
             this._bulletImg = new Image();
             this._count = 0;
             // initialization
@@ -34,7 +34,7 @@ var scenes;
             this._antiBoomImage = new objects.Image();
             this._numOfEnemy = 10;
             this._count = this._numOfEnemy;
-            this._bulletNum = 20;
+            this._bulletNum = 100;
             // this._point = 0;
             this.Start();
         }

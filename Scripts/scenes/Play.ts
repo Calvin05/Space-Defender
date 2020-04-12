@@ -45,7 +45,7 @@ module scenes {
             this._bullets = new Array<objects.Bullet>();
             this._enemybullets = new Array<objects.Bullet>();
             this._numOfEnemy;
-            this._bulletNum = 30;
+            this._bulletNum = 1000;
             this._bulletNumLabel = new objects.Label();
             // this.point = 0;
             //this._pointLabel = new objects.Label();

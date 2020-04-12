@@ -21,6 +21,10 @@ var scenes;
             if (config.Game.STATUS == true) {
                 this.endLabel = new objects.Label("SEE YOU AGAIN", "80px", "Impact, Charcoal, sans-serif", "#ffffff", 320, 300, true);
             }
+            else if (config.Game.ENDSCENE == true) {
+                this.endLabel = new objects.Label("YOU ARE HERO", "80px", "Impact, Charcoal, sans-serif", "#ffffff", 320, 300, true);
+                config.Game.ENDSCENE = false;
+            }
             else {
                 this.endLabel = new objects.Label("GAME OVER", "80px", "Impact, Charcoal, sans-serif", "#ffffff", 320, 300, true);
             }

@@ -35,6 +35,7 @@ var scenes;
             this._lifeImage = new objects.Button();
             this._count = 0;
             this._player = new objects.Player();
+            this._pointsUp = new objects.Image();
             this._levelup = new objects.Image();
             this._healthup = new objects.Image();
             this._playerBullet = new objects.Bullet();
@@ -129,6 +130,18 @@ var scenes;
                     this._healthup.setStatus(false);
                 }
             }
+            //checking whether  points is colliding with the player
+            if (this._pointsUp.getStatus()) {
+                this._pointsUp.Update();
+                managers.Collision.AABBCheck(this._player, this._pointsUp);
+                if (this._pointsUp.isColliding) {
+                    createjs.Sound.play("./Assets/sounds/points.wav");
+                    config.Game.SCORE_BOARD.Score += 400;
+                    console.log("Collided Mister Points");
+                    this.removeChild(this._pointsUp);
+                    this._pointsUp.setStatus(false);
+                }
+            }
             this._levelup.y += 5;
             this._levelup.position.y += 5;
             managers.Collision.AABBCheck(this._player, this._levelup, 0);
@@ -212,6 +225,11 @@ var scenes;
                             this._healthup = new objects.Image(config.Game.ASSETS.getResult("health"), enemy.x, enemy.y + 40, true);
                             this.addChild(this._healthup);
                             this._healthup.setStatus(true);
+                        }
+                        if (randNum == 2) {
+                            this._pointsUp = new objects.Image(config.Game.ASSETS.getResult("points"), enemy.x, enemy.y + 20, true);
+                            this.addChild(this._pointsUp);
+                            this._pointsUp.setStatus(true);
                         }
                         enemy.position = new objects.Vector2(-100, -200);
                         enemy.died = true;

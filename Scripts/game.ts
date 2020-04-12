@@ -49,7 +49,9 @@ let game1 = (function () {
         { id: "powerup", src: "./Assets/sounds/PowerUp.wav" },
         { id: "crashSoundP", src: "./Assets/sounds/crashPlayer.wav" },
         { id: "break", src: "./Assets/sounds/break.wav" },
-        { id: "powerup", src: "./Assets/sounds/powerup.wav" }
+        { id: "powerup", src: "./Assets/sounds/powerup.wav" },
+        { id: "exp1", src: "./Assets/sounds/exp1.wav" },
+        { id: "exp2", src: "./Assets/sounds/exp2.wav" }
 
     ];
 

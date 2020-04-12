@@ -180,11 +180,13 @@ module scenes
                     bullet.position = new objects.Vector2(-200,-200);
                     this.removeChild(bullet);
                     config.Game.SCORE_BOARD.Score += 100;
+                   
                     if(this._boss.Live < 1 ) {
                         this.BigExploreAnimation(this._boss.x - 130, this._boss.y-90);
                         config.Game.SCORE_BOARD.Score  += 1000;
                         this.removeChild(this._boss);
                         this._boss.position = new objects.Vector2(-500,-500);
+                        createjs.Sound.play("exp2");
                         //config.
                     }
                     // this._point += 200;
@@ -216,7 +218,7 @@ module scenes
                 });
             })
             this._enemybullets.forEach((bullet)=>{
-                this.BulletSpeed(bullet, 30, 30, true);
+                this.BulletSpeed(bullet, 15, 15, true);
             })
 
             if(this._boss.canShoot()) {
@@ -265,16 +267,16 @@ module scenes
             //this._pointLabel.text = " : " + Play.point;
             if(this._boss.Live < 1)
             {
-                config.Game.ENDSCENE = true;
-                config.Game.SCENE_STATE = scenes.State.END;
+                this.fire = false;
+                setTimeout(() => {
+                    this.removeChild(this._player);
+                    config.Game.ENDSCENE = true;
+                    config.Game.SCENE_STATE = scenes.State.END;
+                }, 500);
+               
             }
             //this._liveLabel.text = " : " + managers.Collision.live;
             //if player kill all the enemies
-            if(managers.Collision.count == this._numOfEnemy)
-            {
-                config.Game.ENDSCENE = true;
-                config.Game.SCENE_STATE = scenes.State.END;
-            }
             
             //if attacked more than 3 times, game over
             if(config.Game.SCORE_BOARD.Lives <= 0)
@@ -294,16 +296,10 @@ module scenes
                 if (this._antiBoom){
                     if(config.Game.SCORE_BOARD.AntiBoomItem > 0)
                     {
-                        config.Game.SCORE_BOARD.Score += 500;
-                        console.log("antianti")
-                        this._ememies.forEach(enemy => {
-                            this.ExploreAnimation(enemy.x, enemy.y);
-                            createjs.Sound.play("./Assets/sounds/crash.wav");
-                            enemy.position = new objects.Vector2(-100, -200);
-                            enemy.died = true;
-                            this.removeChild(enemy);
-                        });
-                        config.Game.SCORE_BOARD.AntiBoomItem -=1;
+                        config.Game.SCORE_BOARD.AntiBoomItem--;
+                        this._boss.Live--;
+                        this.SmallExploreAnimation(this._boss.x, this._boss.y);
+                        this._antiBoom = false;
                     }
                 }
             }
@@ -367,6 +363,7 @@ module scenes
                 config.Game.SCORE_BOARD.AntiBoomItem = 2;
                 else config.Game.SCORE_BOARD.AntiBoomItem = 1;
             }
+            this.killAll();
         }//end update
         
         public Main(): void {
@@ -558,6 +555,7 @@ module scenes
                 animation.gotoAndPlay('explore');
 
                 this.addChild(animation);
+                createjs.Sound.play("exp1");
             
         }
 
